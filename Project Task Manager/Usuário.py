@@ -1,9 +1,10 @@
 #Importando Biblioteca
 from PySimpleGUI import (
     Window, Button, Text, Image, Input, 
-    Column, VSeparator, Push
+    Column, VSeparator, Push, theme
 )
-
+#Tema
+theme('DarkPurple')
 #Criando Layout
 #Falta colocar a imagem
 
@@ -15,7 +16,7 @@ layout_esquerda = [
 
   [Text('E-mail:'), Input()], 
   [Text('Senha:'), Input(password_char='*')],    
-  [Push(), Button('Login'), Push(), Button('Esqueci a Senha')]
+  [Push(), Button('Login'), Push(), Button('Esqueci a Senha'), Push()]
 
 ]
 
