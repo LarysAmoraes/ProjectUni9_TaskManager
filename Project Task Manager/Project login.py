@@ -9,10 +9,9 @@ theme('DarkPurple')
 layout_direita = [[Image(filename='Logo.png')]]
 
 layout_esquerda = [
-    [Text('E-mail:'), Input(key='-USERNAME-')],
+    [Text('Usiário'), Input(key='-USERNAME-')],
     [Text('Senha:'), Input(password_char='*', key='-PASSWORD-')],
-    [Push(), Button('Login', key='-LOGIN-'),
-     Button('Esqueci a Senha'), Button('Registre-se'), Push()]
+    [Push(), Button('Login', key='-LOGIN-'), Button('Registre-se'), Push()]
 ]
 
 layout = [[Column(layout_direita), VSeparator(), Column(layout_esquerda)]]
@@ -32,7 +31,6 @@ while True:
         # Definir layout da janela de Registro
         register_layout = [
             [Text('Nome:'), Input('')],
-            [Text('E-mail:'), Input('')],
             [Text('Senha:'), Input('')],
             [Button('Cadastrar')]
         ]
