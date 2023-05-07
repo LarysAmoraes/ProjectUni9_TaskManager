@@ -1,5 +1,5 @@
 from PySimpleGUI import (
-    Window, Button, Text, Image, Input, Column, VSeparator, Push, theme, popup, WIN_CLOSED, Checkbox, Frame, pickle
+    Window, Button, Text, Image, Input, Column, VSeparator, Push, theme, popup, WIN_CLOSED, Checkbox, Frame
 )
 
 # Tema
@@ -9,9 +9,9 @@ theme('DarkPurple')
 layout_direita = [[Image(filename='Logo.png')]]
 
 layout_esquerda = [
-    [Text('Usiário'), Input(key='-USERNAME-')],
-    [Text('Senha:'), Input(password_char='*', key='-PASSWORD-')],
-    [Push(), Button('Login', key='-LOGIN-'), Button('Registre-se'), Push()]
+  [Text('E-mail:'), Input(key='-USERNAME-')], 
+  [Text('Senha:'), Input(password_char='*', key='-PASSWORD-')],    
+  [Push(), Button('Login', key='-LOGIN-'), Button('Registre-se'), Push()]
 ]
 
 layout = [[Column(layout_direita), VSeparator(), Column(layout_esquerda)]]
@@ -64,32 +64,39 @@ while True:
     # Adicionando função de login
     if event == '-LOGIN-':
         linha = [[Checkbox(''), Input('')]]
-        layout = [[Frame('TaskManager', layout=linha, key='container')], [Button(
-            'Nova Tarefa'), Button('Resetar Tarefas'), [Button('Salvar Tarefas')]]]
+        layout = [[Frame('TaskManager', layout=linha, key='container')], [Button('Nova Tarefa'), Button('Resetar Tarefas')], [Button('Salvar Tarefas')]]
         janela = Window('TaskManager', layout=layout, finalize=True)
 
         # Loop da janela de login
         while True:
             event, values = janela.read()
 
-            if event == WIN_CLOSED:  # Verifica se o usuário fechou a janela de login
+            if event == WIN_CLOSED: # Verifica se o usuário fechou a janela de login
                 break
 
             elif event == 'Nova Tarefa':
-                janela.extend_layout(janela['container'], [
-                                     [Checkbox(''), Input('')]])
+                janela.extend_layout(janela['container'], [[Checkbox(''), Input('')]])
 
             elif event == 'Resetar Tarefas':
                 janela.close()
-                janela = Window(
-                    'TaskManager', layout=layout_esquerda, finalize=True)
+                janela = Window('TaskManager', layout=layout_esquerda, finalize=True)
+                break
+
             elif event == 'Salvar Tarefas':
-                concluidas = []
-                for row in janela['container'].Rows:
-                    if row[0].get():
-                        concluidas.append(row[1].get())
-
-                with open('tarefas_concluidas.pkl', 'wb') as f:
-                    pickle.dump(concluidas, f)
-
+                # Abrir janela de salvar arquivo
                 popup('Tarefas salvas com sucesso!')
+
+            # Verifica se o usuário fechou a janela principal
+            if event == WIN_CLOSED:
+                break
+
+        # Encerra a janela de login
+        janela.close()
+
+    # Verifica se o usuário fechou a janela principal
+    if event == WIN_CLOSED:
+        break
+
+# Encerra a janela principal
+window.close()
+
