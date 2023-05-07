@@ -1,31 +1,20 @@
-#Importando Biblioteca
 from PySimpleGUI import (
-    Window, Button, Text, Image, Input, 
-    Column, VSeparator, Push, theme, popup, WIN_CLOSED
+    Window, Button, Text, Image, Input, Column, VSeparator, Push, theme, popup, WIN_CLOSED, Checkbox, Frame
 )
 
-#Tema
-
+# Tema
 theme('DarkPurple')
 
-#Criando Layout
+# Criando layout
+layout_direita = [[Image(filename='Logo.png')]]
 
-layout_direita = [  [Image(filename='Logo.png')] #Imagem inserid pelo caminho no C:
-]
-
-#Criando sistema de Login
 layout_esquerda = [
-
   [Text('E-mail:'), Input(key='-USERNAME-')], 
   [Text('Senha:'), Input(password_char='*', key='-PASSWORD-')],    
   [Push(), Button('Login', key='-LOGIN-'), Button('Esqueci a Senha'), Button('Registre-se'), Push()]
-
 ]
 
-layout = [
-  [Column(layout_direita), VSeparator(), Column(layout_esquerda)]
-
-]
+layout = [[Column(layout_direita), VSeparator(), Column(layout_esquerda)]]
 
 window = Window(
     'Task Manager',
@@ -39,9 +28,7 @@ while True:
 
   # Verifica se o usuário clicou no botão "Registre-se"
   if event == 'Registre-se':
-      
-    #Definir layout da janela de Registro
-      
+    # Definir layout da janela de Registro
     register_layout =[
       [Text('Nome:'), Input('')],
       [Text('E-mail:'), Input('')],
@@ -49,79 +36,58 @@ while True:
       [Button('Cadastrar')]
     ]
       
-    #Criando Janela de registro
+    # Criando janela de registro
     register_window = Window('Cadastro de Usuários', register_layout)
 
     # Loop da janela de registro
     while True:
-        event, values = register_window.read()
+      event, values = register_window.read()
 
-        # Verifica se o usuário clicou no botão "Cadastrar"
-        if event == 'Cadastrar':
-            # Obtém os valores dos campos do formulário
-          name = values[0]
-          email = values[1]
+      # Verifica se o usuário clicou no botão "Cadastrar"
+      if event == 'Cadastrar':
+        # Obtém os valores dos campos do formulário
+        name = values[0]
+        email = values[1]
 
-          # Salva os valores em algum lugar ou envia para o backend processar
+        # Salva os valores em algum lugar ou envia para o backend processar
 
-          # Fecha a janela de registro
-          register_window.close()
-          break
+        # Fecha a janela de registro
+        register_window.close()
+        break
 
-          # Verifica se o usuário fechou a janela de registro
-          if event == 'Fechar' or event == WIN_CLOSED:
-            register_window.close()
-            break
+      # Verifica se o usuário fechou a janela de registro
+      if event == 'Fechar' or event == WIN_CLOSED:
+        register_window.close()
+        break
 
     popup('Registro de usuário concluído com sucesso!')
 
+  # Adicionando função de login
+  if event == '-LOGIN-':
+    linha = [[Checkbox(''), Input('')]]
+    layout = [[Frame('TaskManager', layout=linha, key='container')], [Button('Nova Tarefa'), Button('Resetar Tarefas')]]
+    janela = Window('TaskManager', layout=layout, finalize=True)
 
-    # Verifica se o usuário fechou a janela de login
-    if event == WIN_CLOSED:
+    # Loop da janela de login
+    while True:
+      event, values = janela.read()
+
+      if event == WIN_CLOSED: # Verifica se o usuário fechou a janela de login
         break
-    
-#Adicionando evento ao botão de login
-# Verifica se o usuário clicou no botão "Login"
-    if event == '-LOGIN-':
-      # Obtenha os valores de nome de usuário e senha inseridos
-      username = values['-USERNAME-']
-      password = values['-PASSWORD-']
 
-      # Verifique se as credenciais estão corretas
-      if username == 'usuario' and password == 'senha':
-        # Feche a janela de login
-        window.close()
+      elif event == 'Nova Tarefa':
+        janela.extend_layout(janela['container'], [[Checkbox(''), Input('')]])
 
-        # Abra a janela de tarefas
-        import PySimpleGUI as sg
-        from PySimpleGUI import (
-          Window, Button, Text, Image, Input, Column, VSeparator, Push, theme, popup
-            )
+      elif event == 'Resetar Tarefas':
+        janela.close()
+        janela = Window('TaskManager', layout=layout_esquerda, finalize=True)
 
-        def criar_janela_inicial():
-        # código de criação da janela ...
-
-          janela = criar_janela_inicial()
-
-          while True:
-            event, values = janela.read()
-            if event == sg.WIN_CLOSED:
-              break
-              if event == 'Adicionar Tarefa':
-                janela.extend_layout(janela['container'], [[sg.Checkbox(''), Input('')]] )
-              elif event == 'Resetar Tarefas':
-                janela.close()
-                janela = criar_janela_inicial()
-        
-      else:
-      # Credenciais incorretas, exibir mensagem de erro
+      else: # Credenciais incorretas, exibir mensagem de erro
         popup('Credenciais incorretas. Por favor, tente novamente.')
 
-    # Verifica se o usuário fechou a janela de login
-    if event == WIN_CLOSED:
-        break
+  # Verifica se o usuário fechou a janela principal
+  if event == WIN_CLOSED:
+    break
 
-
-   
 # Encerra o programa
 window.close()
