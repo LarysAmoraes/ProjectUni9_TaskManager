@@ -5,7 +5,7 @@ O Task Manager é um programa de gerenciamento de tarefas desenvolvido para auxi
 ## Funcionalidades
 
 - Cadastro de usuários com login e senha
-- Armazenamento de tarefas em formato de lista
+- Preenchimento de tarefas em formato de lista
 - Marcação de tarefas como concluídas
 - Visualização em tempo real das tarefas concluídas
 
