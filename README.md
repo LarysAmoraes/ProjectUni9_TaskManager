@@ -14,6 +14,7 @@ O Task Manager é um programa de gerenciamento de tarefas desenvolvido para auxi
 - Python
 - PySimpleGUI
 - VSCode (IDE)
+- SQLite
 
 ## Pré-requisitos
 
