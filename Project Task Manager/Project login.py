@@ -9,9 +9,9 @@ theme('DarkPurple')
 layout_direita = [[Image(filename='Logo.png')]]
 
 layout_esquerda = [
-  [Text('E-mail:'), Input(key='-USERNAME-')], 
-  [Text('Senha:'), Input(password_char='*', key='-PASSWORD-')],    
-  [Push(), Button('Login', key='-LOGIN-'), Button('Registre-se'), Push()]
+    [Text('E-mail:'), Input(key='-USERNAME-')],
+    [Text('Senha:'), Input(password_char='*', key='-PASSWORD-')],
+    [Push(), Button('Login', key='-LOGIN-'), Button('Registre-se'), Push()]
 ]
 
 layout = [[Column(layout_direita), VSeparator(), Column(layout_esquerda)]]
@@ -32,6 +32,7 @@ while True:
         register_layout = [
             [Text('Nome:'), Input('')],
             [Text('Senha:'), Input('')],
+            [Text('E-mail')],
             [Button('Cadastrar')]
         ]
 
@@ -63,8 +64,10 @@ while True:
 
     # Adicionando função de login
     if event == '-LOGIN-':
+        popup('Login realizado com sucesso!')
+
         linha = [[Checkbox(''), Input('')]]
-        layout = [[Frame('TaskManager', layout=linha, key='container')], [Button('Nova Tarefa'), Button('Resetar Tarefas')], [Button('Salvar Tarefas')]]
+        layout = [[Frame('TaskManager', layout=linha, key='container')], [Button('Nova Tarefa'), Button('Resetar Tarefas')]]
         janela = Window('TaskManager', layout=layout, finalize=True)
 
         # Loop da janela de login
@@ -78,17 +81,12 @@ while True:
                 janela.extend_layout(janela['container'], [[Checkbox(''), Input('')]])
 
             elif event == 'Resetar Tarefas':
-                janela.close()
-                janela = Window('TaskManager', layout=layout_esquerda, finalize=True)
-                break
+                linha = [[Checkbox(''), Input('')]]
+                janela['container'].update(linha)
 
-            elif event == 'Salvar Tarefas':
-                # Abrir janela de salvar arquivo
-                popup('Tarefas salvas com sucesso!')
-
-            # Verifica se o usuário fechou a janela principal
-            if event == WIN_CLOSED:
-                break
+        # Verifica se o usuário fechou a janela principal
+        if event == WIN_CLOSED:
+            break
 
         # Encerra a janela de login
         janela.close()
@@ -97,6 +95,4 @@ while True:
     if event == WIN_CLOSED:
         break
 
-# Encerra a janela principal
-window.close()
-
+#######Falta o Banco de dados e o erro do botão de reset #########
