@@ -81,8 +81,12 @@ while True:
                 janela.extend_layout(janela['container'], [[Checkbox(''), Input('')]])
 
             elif event == 'Resetar Tarefas':
+                janela.close()
                 linha = [[Checkbox(''), Input('')]]
-                janela['container'].update(linha)
+                layout = [[Frame('TaskManager', layout=linha, key='container')], [Button('Nova Tarefa'), Button('Resetar Tarefas')]]
+                janela = Window('TaskManager', layout=layout, finalize=True)
+                
+                
 
         # Verifica se o usuário fechou a janela principal
         if event == WIN_CLOSED:
@@ -95,4 +99,4 @@ while True:
     if event == WIN_CLOSED:
         break
 
-#######Falta o Banco de dados e o erro do botão de reset #########
+####Falta BD ####
