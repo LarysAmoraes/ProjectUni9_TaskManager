@@ -32,9 +32,11 @@ while True:
         register_layout = [
             [Text('Nome:'), Input('')],
             [Text('Senha:'), Input('')],
-            [Text('E-mail')],
+            [Text('E-mail'), Input('')],
             [Button('Cadastrar')]
-        ]
+            ]
+            
+    
 
         # Criando janela de registro
         register_window = Window('Cadastro de Usuários', register_layout)
@@ -99,4 +101,3 @@ while True:
     if event == WIN_CLOSED:
         break
 
-####Falta BD ####
