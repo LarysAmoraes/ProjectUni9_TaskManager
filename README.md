@@ -1,29 +1,37 @@
-# Task Manager
+# ✅ Task Manager — Mini TCC de Sistemas
 
-O Task Manager é um programa de gerenciamento de tarefas desenvolvido para auxiliar na organização e controle de atividades diárias, desde tarefas simples até metas mais complexas.
+O **Task Manager** é um sistema de gerenciamento de tarefas desenvolvido como parte de um **Mini TCC** para o curso de Sistemas de Informação.  
+O projeto tem como objetivo demonstrar o uso de **interfaces gráficas em Python**, **persistência de dados** e **princípios de organização pessoal e produtividade**.
 
-## Funcionalidades
+---
 
-- Cadastro de usuários com login e senha
-- Preenchimento de tarefas em formato de lista
-- Marcação de tarefas como concluídas
-- Visualização em tempo real das tarefas concluídas
+## 🎯 Objetivo do Projeto
 
-## Tecnologias utilizadas
+O objetivo principal é facilitar a **organização de atividades diárias** por meio de um sistema simples e intuitivo, com funcionalidades essenciais para acompanhar a execução de tarefas.
 
-- Python
-- PySimpleGUI
-- VSCode (IDE)
-- SQLite
+---
 
-## Pré-requisitos
+## ✨ Funcionalidades
 
-- Python 3.7 ou superior
+- 👤 Cadastro de usuários com login e senha
+- 📝 Criação de tarefas em formato de lista
+- ✅ Marcação de tarefas como concluídas
+- 👀 Visualização em tempo real do progresso
 
-## Contribuição
+---
 
-Contribuições são bem-vindas! Se você deseja contribuir com melhorias, correções de bugs ou novas funcionalidades, fique à vontade para abrir uma issue ou enviar um pull request.
+## 🛠️ Tecnologias Utilizadas
 
-## Licença
+- 🐍 **Python 3**
+- 🖼️ **PySimpleGUI** (Interface Gráfica)
+- 🗃️ **SQLite** (Banco de Dados Local)
+- 💻 **Visual Studio Code** (IDE)
 
-Este projeto está licenciado sob a [Licença MIT](https://opensource.org/licenses/MIT).
+---
+
+## 📚 Pré-requisitos
+
+- Python 3.7 ou superior  
+- Instalar dependências:
+  ```bash
+  pip install PySimpleGUI
